@@ -20,7 +20,7 @@ public class Flight
     DateTime? departureDate,
     DateTime? arrivalDate,
     Aircraft? planeType,
-    List<Passenger>? passengers
+    List<RegisteredPassenger>? passengers
     )
 {
     /// <summary>
@@ -71,6 +71,6 @@ public class Flight
     /// <summary>
     /// Список пассажиров, зарегестрированных на рейс
     /// </summary>
-    public List<Passenger>? Passengers { get; set; } = passengers;
+    public List<RegisteredPassenger>? Passengers { get; set; } = passengers;
 }
 
