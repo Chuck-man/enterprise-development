@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build AirCompany/AirCompany.Domain/AirCompany.Domain.csproj --no-restore
     - name: Test
-      run: dotnet test AirCompany.Domain.Test/AirCompany.Domain.Test.csproj --no-build --verbosity normal
+      run: dotnet test AirCompany/AirCompany.Domain.Test/AirCompany.Domain.Test.csproj --no-build --verbosity normal
