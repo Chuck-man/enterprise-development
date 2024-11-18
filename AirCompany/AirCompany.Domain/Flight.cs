@@ -3,14 +3,14 @@
 /// <summary>
 /// Класс, представляющий информацию о рейсе
 /// </summary>
-/// <param name="id">Идентифиактор рейса</param>
+/// <param name="id">Идентификатор рейса</param>
 /// <param name="number">Номер рейса</param>
 /// <param name="departurePoint">Пункт отправления рейса</param>
 /// <param name="arrivalPoint">Пункт прибытия рейса</param>
 /// <param name="departureDate">Время отправления рейса</param>
 /// <param name="arrivalDate">Время прибытия рейса</param>
 /// <param name="planeType">Тип самолёта, совершающего рейс</param>
-/// <param name="passengers">Список пассажиров, зарегестрированных на рейс</param>
+/// <param name="passengers">Список пассажиров, зарегистрированных на рейс</param>
 public class Flight
     (
     int id,
@@ -24,7 +24,7 @@ public class Flight
     )
 {
     /// <summary>
-    /// Идентифиактор рейса
+    /// Идентификатор рейса
     /// </summary>
     public required int Id { get; set; } = id;
 
