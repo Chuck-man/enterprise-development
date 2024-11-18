@@ -22,8 +22,8 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
     {
         var flightId = 1; // ID рейса для поиска
         var passengers = _testDataProvider.registeredPassengers
-            .Where(p => p.Flight.Id == flightId && p.BaggageWeight == 0)
-            .OrderBy(p => p.Passenger.FullName)
+            .Where(p => p.Flight!.Id == flightId && p.BaggageWeight == 0)
+            .OrderBy(p => p.Passenger!.FullName)
             .ToList();
 
         Assert.NotEmpty(passengers);
@@ -37,15 +37,15 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
     public void TestOutputAircraftFlightsInTimePeriod()
     {
         var aircraftTypeId = 1;
-        DateTime start = new DateTime(2023, 01, 20, 11, 00, 00);
-        DateTime end = new DateTime(2024, 03, 14, 00, 00, 00);
+        DateTime start = new(2023, 01, 20, 11, 00, 00);
+        DateTime end = new(2024, 03, 14, 00, 00, 00);
 
         var flights = _testDataProvider.flights
-            .Where(f => f.PlaneType.Id == aircraftTypeId && f.DepartureDate >= start && f.ArrivalDate <= end)
+            .Where(f => f.PlaneType!.Id == aircraftTypeId && f.DepartureDate >= start && f.ArrivalDate <= end)
             .ToList();
 
         Assert.NotEmpty(flights);
-        Assert.All(flights, f => Assert.Equal(aircraftTypeId, f.PlaneType.Id));
+        Assert.All(flights, f => Assert.Equal(aircraftTypeId, f.PlaneType!.Id));
         Assert.All(flights, f => Assert.True(f.DepartureDate >= start && f.ArrivalDate <= end));
     }
 
@@ -56,7 +56,7 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
     public void TestOutputTop5FlightsByPassengersNumber()
     {
         var topflights = _testDataProvider.flights
-            .OrderByDescending(f => f.Passengers.Count)
+            .OrderByDescending(f => f.Passengers!.Count)
             .Take(5)
             .ToList();
 
@@ -95,8 +95,8 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
             .Where(f => f.DeparturePoint == departurePoint)
             .ToList();
 
-        var averageOccupancy = flightsFromPoint.Average(f => f.Passengers.Count);
-        var maxOccupancy = flightsFromPoint.Max(f => f.Passengers.Count);
+        var averageOccupancy = flightsFromPoint.Average(f => f.Passengers!.Count);
+        var maxOccupancy = flightsFromPoint.Max(f => f.Passengers!.Count);
 
         Assert.Equal(3, averageOccupancy);
         Assert.Equal(4, maxOccupancy);
