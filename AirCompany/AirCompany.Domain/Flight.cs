@@ -51,7 +51,7 @@ public class Flight
     public required Aircraft PlaneType { get; set; }
 
     /// <summary>
-    /// Список пассажиров, зарегестрированных на рейс
+    /// Список пассажиров, зарегистрированных на рейс
     /// </summary>
     public required List<RegisteredPassenger> Passengers { get; set; }
 }

@@ -1,6 +1,4 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace AirCompany.Domain.Test;
+﻿namespace AirCompany.Domain.Test;
 
 public class TestDataProvider
 {
