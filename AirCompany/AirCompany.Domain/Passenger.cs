@@ -3,29 +3,21 @@
 /// <summary>
 /// Класс, предстваляющий информацию о пассажире
 /// </summary>
-/// <param name="id">Идентификатор пассажира</param>
-/// <param name="passportNumber">Номер паспорта пассажира</param>
-/// <param name="fullName">ФИО пассажира</param>
 public class Passenger
-    (
-    int id,
-    string? passportNumber,
-    string? fullName
-    )
 {
     /// <summary>
     /// Идентификатор пассажира
     /// </summary>
-    public required int Id { get; set; } = id;
+    public required int Id { get; set; }
 
     /// <summary>
     /// Номер паспорта пассажира
     /// </summary>
-    public string? PassportNumber { get; set; } = passportNumber;
+    public required string PassportNumber { get; set; }
 
     /// <summary>
     /// ФИО пассажира
     /// </summary>
-    public string? FullName { get; set; } = fullName;
+    public required string FullName { get; set; }
 }
 

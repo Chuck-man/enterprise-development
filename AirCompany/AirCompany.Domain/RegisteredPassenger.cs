@@ -3,50 +3,36 @@
 /// <summary>
 /// Класс, представляющий информацию о зарегистрированном пассажире
 /// </summary>
-/// <param name="id">Идентификатор зарегистрированного пассажира</param>
-/// <param name="number">Номер зарегистрированного пассажира</param>
-/// <param name="seatNumber">Номер сиденья зарегистрированного пассажира</param>
-/// <param name="baggageWeight">Вес багажа зарегистрированного пассажира</param>
-/// <param name="flight">Рейс, на котором зарегистрирован пассажир</param>
-/// <param name="passenger">Пассажир, зарегистрированный на рейс</param>
 public class RegisteredPassenger
-    (
-    int id,
-    string? number,
-    string? seatNumber,
-    double? baggageWeight,
-    Flight? flight,
-    Passenger? passenger
-    )
 {
     /// <summary>
     /// Идентификатор зарегистрированного пассажира
     /// </summary>
-    public required int Id { get; set; } = id;
+    public required int Id { get; set; }
 
     /// <summary>
     /// Номер зарегистрированного пассажира
     /// </summary>
-    public string? Number { get; set; } = number;
+    public required string Number { get; set; }
 
     /// <summary>
     /// Номер сиденья зарегистрированного пассажира
     /// </summary>
-    public string? SeatNumber { get; set; } = seatNumber;
+    public required string SeatNumber { get; set; }
 
     /// <summary>
     /// Вес багажа зарегистрированного пассажира
     /// </summary>
-    public double? BaggageWeight { get; set; } = baggageWeight;
+    public required double BaggageWeight { get; set; }
 
     /// <summary>
     /// Рейс, на котором зарегистрирован пассажир
     /// </summary>
-    public Flight? Flight { get; set; } = flight;
+    public required Flight? Flight { get; set; }
 
     /// <summary>
     /// Пассажир, зарегистрированный на рейс
     /// </summary>
-    public Passenger? Passenger { get; set; } = passenger;
+    public required Passenger Passenger { get; set; }
 }
 

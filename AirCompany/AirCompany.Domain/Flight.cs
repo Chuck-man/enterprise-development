@@ -3,74 +3,56 @@
 /// <summary>
 /// Класс, представляющий информацию о рейсе
 /// </summary>
-/// <param name="id">Идентификатор рейса</param>
-/// <param name="number">Номер рейса</param>
-/// <param name="departurePoint">Пункт отправления рейса</param>
-/// <param name="arrivalPoint">Пункт прибытия рейса</param>
-/// <param name="departureDate">Время отправления рейса</param>
-/// <param name="arrivalDate">Время прибытия рейса</param>
-/// <param name="planeType">Тип самолёта, совершающего рейс</param>
-/// <param name="passengers">Список пассажиров, зарегистрированных на рейс</param>
 public class Flight
-    (
-    int id,
-    string? number,
-    string? departurePoint,
-    string? arrivalPoint,
-    DateTime? departureDate,
-    DateTime? arrivalDate,
-    Aircraft? planeType,
-    List<RegisteredPassenger>? passengers
-    )
 {
     /// <summary>
     /// Идентификатор рейса
     /// </summary>
-    public required int Id { get; set; } = id;
+    public required int Id { get; set; }
 
     /// <summary>
     /// Номер рейса
     /// </summary>
-    public string? Number { get; set; } = number;
+    public required string Number { get; set; }
 
     /// <summary>
     /// Пункт отправления рейса
     /// </summary>
-    public string? DeparturePoint { get; set; } = departurePoint;
+    public required string DeparturePoint { get; set; }
 
     /// <summary>
     /// Пункт прибытия рейса
     /// </summary>
-    public string? ArrivalPoint { get; set; } = arrivalPoint;
+    public required string ArrivalPoint { get; set; }
 
     /// <summary>
     /// Время отправления рейса
     /// </summary>
-    public DateTime? DepartureDate { get; set; } = departureDate;
+    public required DateTime DepartureDate { get; set; }
 
     /// <summary>
     /// Время прибытия рейса
     /// </summary>
-    public DateTime? ArrivalDate { get; set; } = arrivalDate;
+    public required DateTime ArrivalDate { get; set; }
 
     /// <summary>
     /// Время отправления рейса
     /// </summary>
-    public TimeOnly? DepartureTime => DepartureDate.HasValue ? TimeOnly.FromDateTime(DepartureDate.Value) : null;
+    public TimeOnly DepartureTime => TimeOnly.FromDateTime(DepartureDate);
 
     /// <summary>
     /// Время полёта
     /// </summary>
-    public TimeSpan? TravelTime => (DepartureDate.HasValue && ArrivalDate.HasValue) ? DepartureDate.Value - ArrivalDate.Value : null;
+    public TimeSpan TravelTime => DepartureDate - ArrivalDate;
 
     /// <summary>
     /// Тип самолёта, совершающего рейс
     /// </summary>
-    public Aircraft? PlaneType { get; set; } = planeType;
+    public required Aircraft PlaneType { get; set; }
 
     /// <summary>
     /// Список пассажиров, зарегестрированных на рейс
     /// </summary>
-    public List<RegisteredPassenger>? Passengers { get; set; } = passengers;
+    public required List<RegisteredPassenger> Passengers { get; set; }
 }
 
