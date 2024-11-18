@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using AirCompany.Domain;
-
-namespace AirCompany.Domain.Test;
+﻿namespace AirCompany.Domain.Test;
 
 public class TestDataProvider
 {
