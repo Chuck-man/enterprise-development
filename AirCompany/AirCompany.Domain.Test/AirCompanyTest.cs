@@ -89,7 +89,7 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
     [Fact]
     public void TestOutputMaxAndAverageOccupancyByDeparturePoint()
     {
-        string departurePoint = "Detroit";
+        var departurePoint = "Detroit";
 
         var flightsFromPoint = _testDataProvider.Flights
             .Where(f => f.DeparturePoint == departurePoint)
