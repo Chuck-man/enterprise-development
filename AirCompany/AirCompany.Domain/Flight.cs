@@ -26,12 +26,12 @@ public class Flight
     public required string ArrivalPoint { get; set; }
 
     /// <summary>
-    /// Время отправления рейса
+    /// Дата и время отправления рейса
     /// </summary>
     public required DateTime DepartureDate { get; set; }
 
     /// <summary>
-    /// Время прибытия рейса
+    /// Дата и время прибытия рейса
     /// </summary>
     public required DateTime ArrivalDate { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿namespace AirCompany.Domain;
 
 /// <summary>
-/// Класс, предстваляющий информацию о пассажире
+/// Класс, представляющий информацию о пассажире
 /// </summary>
 public class Passenger
 {
