@@ -5,20 +5,20 @@ public class TestDataProvider
     
     public List<Aircraft> Aircrafts =
         [
-            new Aircraft { Id = 1, Model = "Boeing 727", Capacity = 36560.0, Efficiency = 960.0, MaxPassenger = 189 },
-            new Aircraft { Id = 2, Model = "Airbus A320", Capacity = 41800.0, Efficiency = 900.0, MaxPassenger = 180 },
-            new Aircraft { Id = 3, Model = "Boeing 777", Capacity = 150000.0, Efficiency = 910.0, MaxPassenger = 500 },
-            new Aircraft { Id = 4, Model = "ATR 42/72", Capacity = 11250.0, Efficiency = 450.0, MaxPassenger = 50 },
-            new Aircraft { Id = 5, Model = "MD-80", Capacity = 60000.0, Efficiency = 811.0, MaxPassenger = 172 }
+            new() { Id = 1, Model = "Boeing 727", Capacity = 36560.0, Efficiency = 960.0, MaxPassenger = 189 },
+            new() { Id = 2, Model = "Airbus A320", Capacity = 41800.0, Efficiency = 900.0, MaxPassenger = 180 },
+            new() { Id = 3, Model = "Boeing 777", Capacity = 150000.0, Efficiency = 910.0, MaxPassenger = 500 },
+            new() { Id = 4, Model = "ATR 42/72", Capacity = 11250.0, Efficiency = 450.0, MaxPassenger = 50 },
+            new() { Id = 5, Model = "MD-80", Capacity = 60000.0, Efficiency = 811.0, MaxPassenger = 172 }
         ];
 
     public List<Passenger> Passengers =
         [
-            new Passenger { Id = 1, PassportNumber = "583471926", FullName = "Michael Robinson" },
-            new Passenger { Id = 2, PassportNumber = "129837456", FullName = "Charles Smith" },
-            new Passenger { Id = 3, PassportNumber = "937584216", FullName = "John Lawrence" },
-            new Passenger { Id = 4, PassportNumber = "621839457", FullName = "Kevin Williams" },
-            new Passenger { Id = 5, PassportNumber = "742918365", FullName = "Kevin Fitzgerald" },
+            new() { Id = 1, PassportNumber = "583471926", FullName = "Michael Robinson" },
+            new() { Id = 2, PassportNumber = "129837456", FullName = "Charles Smith" },
+            new() { Id = 3, PassportNumber = "937584216", FullName = "John Lawrence" },
+            new() { Id = 4, PassportNumber = "621839457", FullName = "Kevin Williams" },
+            new() { Id = 5, PassportNumber = "742918365", FullName = "Kevin Fitzgerald" },
         ];
 
     public List<Flight> Flights;
@@ -36,11 +36,10 @@ public class TestDataProvider
                 PlaneType = Aircrafts[1],
                 Passengers =
                 [
-                        new RegisteredPassenger { Id = 1, Number = "RP001", SeatNumber = "12A", BaggageWeight = 0.0, Flight = null, Passenger = Passengers[0] },
-                        new RegisteredPassenger { Id = 2, Number = "RP008", SeatNumber = "28C", BaggageWeight = 22.3, Flight = null, Passenger = Passengers[2] },
-                        new RegisteredPassenger { Id = 3, Number = "RP023", SeatNumber = "15F", BaggageWeight = 12.3, Flight = null, Passenger = Passengers[1] }
+                    new RegisteredPassenger { Id = 1, Number = "RP001", SeatNumber = "12A", BaggageWeight = 0.0, Flight = null, Passenger = Passengers[0] },
+                    new RegisteredPassenger { Id = 2, Number = "RP008", SeatNumber = "28C", BaggageWeight = 22.3, Flight = null, Passenger = Passengers[2] },
+                    new RegisteredPassenger { Id = 3, Number = "RP023", SeatNumber = "15F", BaggageWeight = 12.3, Flight = null, Passenger = Passengers[1] }
                 ]
-
             },
 
             new Flight
@@ -53,7 +52,6 @@ public class TestDataProvider
                     new RegisteredPassenger { Id = 4, Number = "RP015", SeatNumber = "31B", BaggageWeight = 10.2, Flight = null, Passenger = Passengers[1] },
                     new RegisteredPassenger { Id = 5, Number = "RP042", SeatNumber = "18D", BaggageWeight = 0, Flight = null, Passenger = Passengers[4] }
                 ]
-
             },
 
             new Flight
@@ -65,7 +63,6 @@ public class TestDataProvider
                 [
                     new RegisteredPassenger { Id = 6, Number = "RP067", SeatNumber = "24A", BaggageWeight = 12.9, Flight = null, Passenger = Passengers[2] }
                 ]
-
             },
 
             new Flight
@@ -80,7 +77,6 @@ public class TestDataProvider
                     new RegisteredPassenger { Id = 9, Number = "RP187", SeatNumber = "5A", BaggageWeight = 14.5, Flight = null, Passenger = Passengers[0] },
                     new RegisteredPassenger { Id = 10, Number = "RP203", SeatNumber = "29J", BaggageWeight = 23.2 , Flight =  null, Passenger = Passengers[2] }
                 ]
-
             },
 
             new Flight
@@ -96,9 +92,7 @@ public class TestDataProvider
                     new RegisteredPassenger { Id = 14, Number = "RP298", SeatNumber = "31D", BaggageWeight = 10.8, Flight = null, Passenger = Passengers[3] },
                     new RegisteredPassenger { Id = 15, Number = "RP317", SeatNumber = "23C", BaggageWeight = 21.4, Flight = null, Passenger = Passengers[2] }
                 ]
-
             }
-
         ];
 
         RegisteredPassengers =
@@ -120,9 +114,6 @@ public class TestDataProvider
             new RegisteredPassenger { Id =  15, Number = "RP269", SeatNumber = "19E", BaggageWeight = 25.3, Flight = Flights[4], Passenger = Passengers[4] },
             new RegisteredPassenger { Id =  16, Number = "RP298", SeatNumber = "31D", BaggageWeight = 10.8, Flight = Flights[4], Passenger = Passengers[3] },
             new RegisteredPassenger { Id =  17, Number = "RP317", SeatNumber = "23C", BaggageWeight = 21.4, Flight = Flights[4], Passenger = Passengers[2] }
-
         ];
-
     }
-
 }
