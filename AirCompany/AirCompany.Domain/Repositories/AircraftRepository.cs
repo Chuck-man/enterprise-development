@@ -16,9 +16,9 @@ internal class AircraftRepository : IRepository<Aircraft>
         return true;
     }
 
-    public IEnumerable<Aircraft> GetEntities() => _aircrafts;
+    public IEnumerable<Aircraft> GetAll() => _aircrafts;
 
-    public Aircraft? GetId(int id) => _aircrafts.Find(a => a.Id == id);
+    public Aircraft? GetById(int id) => _aircrafts.Find(a => a.Id == id);
 
     public Aircraft? Post(Aircraft entity)
     {

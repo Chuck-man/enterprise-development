@@ -10,14 +10,14 @@ public interface IRepository<T>
     /// Получить все сущности
     /// </summary>
     /// <returns>Список сущностей</returns>
-    public IEnumerable<T> GetEntities();
+    public IEnumerable<T> GetAll();
 
     /// <summary>
     /// Получить сущность по идентификатору 
     /// </summary>
     /// <param name="id">Идентификатор сущности</param>
     /// <returns>Сущность по заданному идентификатору</returns>
-    public T? GetId(int id);
+    public T? GetById(int id);
 
     /// <summary>
     /// Добавить новую сущность

@@ -16,9 +16,9 @@ internal class PassengerRepository : IRepository<Passenger>
         return true;
     }
 
-    public IEnumerable<Passenger> GetEntities() => _passengers;
+    public IEnumerable<Passenger> GetAll() => _passengers;
 
-    public Passenger? GetId(int id) => _passengers.Find(p => p.Id == id);
+    public Passenger? GetById(int id) => _passengers.Find(p => p.Id == id);
 
     public Passenger? Post(Passenger entity)
     {

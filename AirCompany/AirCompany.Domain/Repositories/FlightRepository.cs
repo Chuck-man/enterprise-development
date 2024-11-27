@@ -16,9 +16,9 @@ internal class FlightRepository : IRepository<Flight>
         return true;
     }
 
-    public IEnumerable<Flight> GetEntities() => _flights;
+    public IEnumerable<Flight> GetAll() => _flights;
 
-    public Flight? GetId(int id) => _flights.Find(f => f.Id == id);
+    public Flight? GetById(int id) => _flights.Find(f => f.Id == id);
 
     public Flight? Post(Flight entity)
     {
