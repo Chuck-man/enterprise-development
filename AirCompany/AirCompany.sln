@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirCompany.Domain.Test", "A
 		{90E3BCEF-9F50-4C16-8403-083C547D5312} = {90E3BCEF-9F50-4C16-8403-083C547D5312}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirComany.API", "AirComany.API\AirComany.API.csproj", "{0A4ED6B8-15E6-4A0E-9CFB-D6C45F726531}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirCompany.API", "AirCompany.API\AirCompany.API.csproj", "{606D4D79-496D-4198-8FB8-09D1BB82153A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +26,10 @@ Global
 		{F1B452F5-9E89-4772-8256-B7D49E93D13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B452F5-9E89-4772-8256-B7D49E93D13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B452F5-9E89-4772-8256-B7D49E93D13F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A4ED6B8-15E6-4A0E-9CFB-D6C45F726531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A4ED6B8-15E6-4A0E-9CFB-D6C45F726531}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A4ED6B8-15E6-4A0E-9CFB-D6C45F726531}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A4ED6B8-15E6-4A0E-9CFB-D6C45F726531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{606D4D79-496D-4198-8FB8-09D1BB82153A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{606D4D79-496D-4198-8FB8-09D1BB82153A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{606D4D79-496D-4198-8FB8-09D1BB82153A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{606D4D79-496D-4198-8FB8-09D1BB82153A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
