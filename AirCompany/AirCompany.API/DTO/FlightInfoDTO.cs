@@ -13,22 +13,22 @@ public class FlightInfoDTO
     /// <summary>
     /// Пункт отправления
     /// </summary>
-    public required string? DeparturePoint { get; set; }
+    public required string DeparturePoint { get; set; }
 
     /// <summary>
     /// Пункт прибытия
     /// </summary>
-    public required string? ArrivalPoint { get; set; }
+    public required string ArrivalPoint { get; set; }
 
     /// <summary>
     /// Дата и время отправления
     /// </summary>
-    public required DateTime? DepartureDate { get; set; }
+    public required DateTime DepartureDate { get; set; }
 
     /// <summary>
     /// Дата и время прибытия рейса
     /// </summary>
-    public required DateTime? ArrivalDate { get; set; }
+    public required DateTime ArrivalDate { get; set; }
 
     /// <summary>
     /// Количество пассажиров

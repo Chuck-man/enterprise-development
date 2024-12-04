@@ -13,12 +13,12 @@ public class TopFlightsDTO
     /// <summary>
     /// Пункт отправления
     /// </summary>
-    public required string? DeparturePoint { get; set; }
+    public required string DeparturePoint { get; set; }
 
     /// <summary>
     /// Пункт прибытия
     /// </summary>
-    public required string? ArrivalPoint { get; set; }
+    public required string ArrivalPoint { get; set; }
 
     /// <summary>
     /// Количество перевезённых пассажиров

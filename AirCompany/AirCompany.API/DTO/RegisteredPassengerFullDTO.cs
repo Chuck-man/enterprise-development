@@ -13,17 +13,17 @@ public class RegisteredPassengerFullDTO
     /// <summary>
     /// Номер зарегистрированного пассажира
     /// </summary>
-    public required string? Number { get; set; }
+    public required string Number { get; set; }
 
     /// <summary>
     /// Номер сиденья зарегистрированного пассажира
     /// </summary>
-    public required string? SeatNumber { get; set; }
+    public required string SeatNumber { get; set; }
 
     /// <summary>
     /// Вес багажа зарегистрированного пассажира
     /// </summary>
-    public required double? BaggageWeight { get; set; }
+    public required double BaggageWeight { get; set; }
 
     /// <summary>
     /// Идентификатор рейса, на который зарегистрирован пассажир.
@@ -33,5 +33,5 @@ public class RegisteredPassengerFullDTO
     /// <summary>
     /// Идентификатор пассажира, зарегистрированного на рейс.
     /// </summary>
-    public required PassengerFullDTO? Passenger { get; set; }
+    public required PassengerFullDTO Passenger { get; set; }
 }

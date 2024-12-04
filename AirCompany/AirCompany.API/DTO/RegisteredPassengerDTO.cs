@@ -8,12 +8,12 @@ public class RegisteredPassengerDTO
     /// <summary>
     /// Номер зарегистрированного пассажира
     /// </summary>
-    public required string? Number { get; set; }
+    public required string Number { get; set; }
 
     /// <summary>
     /// Номер сиденья зарегистрированного пассажира
     /// </summary>
-    public required string? SeatNumber { get; set; }
+    public required string SeatNumber { get; set; }
 
     /// <summary>
     /// Вес багажа зарегистрированного пассажира

@@ -13,19 +13,19 @@ public class AircraftFullDTO
     /// <summary>
     /// Модель самолёта
     /// </summary>
-    public required string? Model { get; set; }
+    public required string Model { get; set; }
     /// <summary>
     /// Вместимость самолёта
     /// </summary>
-    public required double? Capacity { get; set; }
+    public required double Capacity { get; set; }
 
     /// <summary>
     /// Производительность самолёта
     /// </summary>
-    public required double? Efficiency { get; set; }
+    public required double Efficiency { get; set; }
 
     /// <summary>
     /// Максимальное число пассажиров
     /// </summary>
-    public required int? MaxPassenger { get; set; }
+    public required int MaxPassenger { get; set; }
 }
