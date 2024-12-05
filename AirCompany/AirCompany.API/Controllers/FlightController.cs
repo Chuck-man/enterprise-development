@@ -18,9 +18,9 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
     /// </summary>
     /// <returns>Список рейсов</returns>
     [HttpGet]
-    public ActionResult<IEnumerable<FlightFullDTO>> GetAll()
+    public ActionResult<IEnumerable<FlightFullDto>> GetAll()
     {
-        return Ok(flightRepository.GetAll().Select(mapper.Map<FlightFullDTO>));
+        return Ok(flightRepository.GetAll().Select(mapper.Map<FlightFullDto>));
     }
 
     /// <summary>
@@ -29,15 +29,15 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
     /// <param name="id">Идентификатор рейса</param>
     /// <returns>Рейс или "Не найдено"</returns>
     [HttpGet("{id}")]
-    public ActionResult<FlightFullDTO>? GetById(int id)
+    public ActionResult<FlightFullDto>? GetById(int id)
     {
         var flight = flightRepository.GetById(id);
         if (flight == null) return NotFound();
 
 
-        var flightFullDto = mapper.Map<FlightFullDTO>(flight);
+        var flightFullDto = mapper.Map<FlightFullDto>(flight);
 
-        flightFullDto.Passengers = flight.Passengers.Select(p => mapper.Map<RegisteredPassengerFullDTO>(p)).ToList();
+        flightFullDto.Passengers = flight.Passengers.Select(p => mapper.Map<RegisteredPassengerFullDto>(p)).ToList();
 
 
         return Ok(flightFullDto);
@@ -49,12 +49,12 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
     /// <param name="entity">Информация о новом рейсе</param>
     /// <returns>Добавленный рейс или "Плохой запрос"</returns>
     [HttpPost]
-    public ActionResult<FlightFullDTO> Post([FromBody] FlightDTO entity)
+    public ActionResult<FlightFullDto> Post([FromBody] FlightDto entity)
     {
         var flight = mapper.Map<Flight>(entity);
         var aircraft = aircraftRepository.GetById(entity.PlaneTypeId);
         flight.PlaneType = aircraft!;
-        return mapper.Map<FlightFullDTO>(flightRepository.Post(flight));
+        return mapper.Map<FlightFullDto>(flightRepository.Post(flight));
     }
 
     /// <summary>
@@ -64,7 +64,7 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
     /// <param name="entity">Обновлённая информация о рейсе</param>
     /// <returns>Результат операции</returns>
     [HttpPut("{id}")]
-    public ActionResult Put(int id, [FromBody] FlightDTO entity)
+    public ActionResult Put(int id, [FromBody] FlightDto entity)
     {
         var flight = mapper.Map<Flight>(entity);
         return Ok(flightRepository.Put(id, flight));

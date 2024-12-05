@@ -30,7 +30,8 @@ public class TestDataProvider
         Flights =
         [
             new Flight
-            {   Id = 1, Number = "DL2452", DeparturePoint = "Las Vegas", ArrivalPoint = "Detroit",
+            {   
+                Id = 1, Number = "DL2452", DeparturePoint = "Las Vegas", ArrivalPoint = "Detroit",
                 DepartureDate = new DateTime(2022, 09, 11, 02, 00, 00),
                 ArrivalDate = new DateTime(2022, 09, 11, 06, 00, 00),
                 PlaneType = Aircrafts[1],
@@ -43,7 +44,8 @@ public class TestDataProvider
             },
 
             new Flight
-            {   Id = 2, Number = "DL1217", DeparturePoint = "Detroit", ArrivalPoint = "Las Vegas",
+            {   
+                Id = 2, Number = "DL1217", DeparturePoint = "Detroit", ArrivalPoint = "Las Vegas",
                 DepartureDate = new DateTime(2023, 01, 22, 11, 30, 00),
                 ArrivalDate = new DateTime(2023, 01, 22, 15, 42, 00),
                 PlaneType = Aircrafts[0],
@@ -55,7 +57,8 @@ public class TestDataProvider
             },
 
             new Flight
-            {   Id = 3, Number = "DL2060", DeparturePoint = "Fort Lauderdale", ArrivalPoint = "Orlando",
+            {   
+                Id = 3, Number = "DL2060", DeparturePoint = "Fort Lauderdale", ArrivalPoint = "Orlando",
                 DepartureDate = new DateTime(2024, 03, 13, 19, 40, 00),
                 ArrivalDate = new DateTime(2024, 03, 20, 01, 13, 00),
                 PlaneType = Aircrafts[2],
@@ -66,7 +69,8 @@ public class TestDataProvider
             },
 
             new Flight
-            {   Id = 4, Number = "DL2132", DeparturePoint = "Detroit", ArrivalPoint = "Atlanta",
+            {   
+                Id = 4, Number = "DL2132", DeparturePoint = "Detroit", ArrivalPoint = "Atlanta",
                 DepartureDate = new DateTime(2024, 07, 27, 21, 00, 00),
                 ArrivalDate = new DateTime(2024, 07, 28, 00, 15, 00),
                 PlaneType = Aircrafts[3],
@@ -80,7 +84,8 @@ public class TestDataProvider
             },
 
             new Flight
-            {   Id =  5, Number = "DL1302", DeparturePoint = "New York", ArrivalPoint = "Chikago",
+            {   
+                Id =  5, Number = "DL1302", DeparturePoint = "New York", ArrivalPoint = "Chikago",
                 DepartureDate = new DateTime(2023, 12, 26, 20, 15, 00),
                 ArrivalDate = new DateTime(2023, 12, 26, 23, 20, 00),
                 PlaneType = Aircrafts[4],

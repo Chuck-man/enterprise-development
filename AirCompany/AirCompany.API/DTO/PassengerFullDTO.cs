@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий полную информацию о пассажире для передачи данных.
 /// </summary>
-public class PassengerFullDTO
+public class PassengerFullDto
 {
     /// <summary>
     /// Идентификатор пассажира

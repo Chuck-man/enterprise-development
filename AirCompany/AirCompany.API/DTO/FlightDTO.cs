@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий информацию о рейсе для передачи данных.
 /// </summary>
-public class FlightDTO
+public class FlightDto
 {
     /// <summary>
     /// Номер рейса.

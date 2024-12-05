@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий информацию о пассажире для передачи данных.
 /// </summary>
-public class PassengerDTO
+public class PassengerDto
 {
     /// <summary>
     /// Номер паспорта пассажира

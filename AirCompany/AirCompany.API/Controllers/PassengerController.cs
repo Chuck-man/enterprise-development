@@ -18,9 +18,9 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// </summary>
     /// <returns>Перечисление всех пассажиров.</returns>
     [HttpGet]
-    public ActionResult<IEnumerable<PassengerFullDTO>> GetAll()
+    public ActionResult<IEnumerable<PassengerFullDto>> GetAll()
     {
-        return Ok(repository.GetAll().Select(mapper.Map<PassengerFullDTO>));
+        return Ok(repository.GetAll().Select(mapper.Map<PassengerFullDto>));
     }
 
     /// <summary>
@@ -29,10 +29,10 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// <param name="id">Идентификатор пассажира.</param>
     /// <returns>Full-dto пассажира с указанным идентификатором или null, если не найден.</returns>
     [HttpGet("{id}")]
-    public ActionResult<PassengerFullDTO>? GetById(int id)
+    public ActionResult<PassengerFullDto>? GetById(int id)
     {
         var passenger = repository.GetById(id);
-        return mapper.Map<PassengerFullDTO>(passenger);
+        return mapper.Map<PassengerFullDto>(passenger);
     }
 
     /// <summary>
@@ -41,10 +41,10 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// <param name="entity">DTO объекта пассажира для добавления.</param>
     /// <returns>Full-dto добавленного пассажира или null, если добавление не удалось.</returns>
     [HttpPost]
-    public ActionResult<PassengerFullDTO>? Post(PassengerDTO entity)
+    public ActionResult<PassengerFullDto>? Post(PassengerDto entity)
     {
         var passenger = mapper.Map<Passenger>(entity);
-        return mapper.Map<PassengerFullDTO>(repository.Post(passenger));
+        return mapper.Map<PassengerFullDto>(repository.Post(passenger));
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// <param name="entity">DTO объекта пассажира с новыми данными.</param>
     /// <returns>True, если обновление прошло успешно; иначе - False.</returns>
     [HttpPut("{id}")]
-    public ActionResult Put(int id, PassengerDTO entity)
+    public ActionResult Put(int id, PassengerDto entity)
     {
         var passenger = mapper.Map<Passenger>(entity);
         return Ok(repository.Put(id, passenger));

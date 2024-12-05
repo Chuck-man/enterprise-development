@@ -18,9 +18,9 @@ public class AircraftController(IRepository<Aircraft> repository, IMapper mapper
     /// </summary>
     /// <returns>Перечисление всех самолетов.</returns>
     [HttpGet]
-    public ActionResult<IEnumerable<AircraftFullDTO>> GetAll()
+    public ActionResult<IEnumerable<AircraftFullDto>> GetAll()
     {
-        return Ok(repository.GetAll().Select(mapper.Map<AircraftFullDTO>));
+        return Ok(repository.GetAll().Select(mapper.Map<AircraftFullDto>));
     }
 
     /// <summary>
@@ -29,10 +29,10 @@ public class AircraftController(IRepository<Aircraft> repository, IMapper mapper
     /// <param name="id">Идентификатор самолета.</param>
     /// <returns> Full-dto самолета с указанным идентификатором или null, если не найден.</returns>
     [HttpGet("{id}")]
-    public ActionResult<AircraftFullDTO> GetById(int id)
+    public ActionResult<AircraftFullDto> GetById(int id)
     {
         var aircraft = repository.GetById(id);
-        return mapper.Map<AircraftFullDTO>(aircraft);
+        return mapper.Map<AircraftFullDto>(aircraft);
     }
 
     /// <summary>
@@ -41,10 +41,10 @@ public class AircraftController(IRepository<Aircraft> repository, IMapper mapper
     /// <param name="entity">DTO объекта самолета для добавления.</param>
     /// <returns> Full-dto добавленного самолета или null, если добавление не удалось.</returns>
     [HttpPost]
-    public ActionResult<AircraftFullDTO> Post([FromBody] AircraftDTO entity)
+    public ActionResult<AircraftFullDto> Post([FromBody] AircraftDto entity)
     {
         var aircraft = mapper.Map<Aircraft>(entity);
-        return mapper.Map<AircraftFullDTO>(repository.Post(aircraft));
+        return mapper.Map<AircraftFullDto>(repository.Post(aircraft));
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class AircraftController(IRepository<Aircraft> repository, IMapper mapper
     /// <param name="entity">DTO объекта самолета с новыми данными.</param>
     /// <returns>True, если обновление прошло успешно; иначе - False.</returns>
     [HttpPut("{id}")]
-    public ActionResult Put(int id, [FromBody] AircraftDTO entity)
+    public ActionResult Put(int id, [FromBody] AircraftDto entity)
     {
         var aircraft = mapper.Map<Aircraft>(entity);
         return Ok(repository.Put(id, aircraft));

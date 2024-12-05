@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий полную информация о зарегистрированном пассажире на рейсе для передачи данных.
 /// </summary>
-public class RegisteredPassengerFullDTO
+public class RegisteredPassengerFullDto
 {
     /// <summary>
     /// Идентификатор зарегистрированного пассажира
@@ -33,5 +33,5 @@ public class RegisteredPassengerFullDTO
     /// <summary>
     /// Идентификатор пассажира, зарегистрированного на рейс.
     /// </summary>
-    public required PassengerFullDTO Passenger { get; set; }
+    public required PassengerFullDto Passenger { get; set; }
 }

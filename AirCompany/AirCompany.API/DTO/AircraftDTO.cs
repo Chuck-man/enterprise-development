@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий информацию о самолете для передачи данных.
 /// </summary>
-public class AircraftDTO
+public class AircraftDto
 {
     /// <summary>
     /// Модель самолёта

@@ -3,7 +3,7 @@
 /// <summary>
 /// DTO для топ рейсов
 /// </summary>
-public class TopFlightsDTO
+public class TopFlightsDto
 {
     /// <summary>
     /// Идентификатор рейса

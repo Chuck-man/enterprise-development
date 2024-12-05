@@ -3,7 +3,7 @@
 /// <summary>
 /// DTO для информации о рейсе
 /// </summary>
-public class FlightInfoDTO
+public class FlightInfoDto
 {
     /// <summary>
     /// Идентификатор рейса

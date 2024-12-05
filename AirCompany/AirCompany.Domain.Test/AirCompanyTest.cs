@@ -55,17 +55,17 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
     [Fact]
     public void TestOutputTop5FlightsByPassengersNumber()
     {
-        var topflights = _testDataProvider.Flights
+        var topFlights = _testDataProvider.Flights
             .OrderByDescending(f => f.Passengers.Count)
             .Take(5)
             .ToList();
 
-        Assert.Equal(5, topflights.Count);
-        Assert.Equal(_testDataProvider.Flights[4], topflights[0]);
-        Assert.Equal(_testDataProvider.Flights[3], topflights[1]);
-        Assert.Equal(_testDataProvider.Flights[0], topflights[2]);
-        Assert.Equal(_testDataProvider.Flights[1], topflights[3]);
-        Assert.Equal(_testDataProvider.Flights[2], topflights[4]);
+        Assert.Equal(5, topFlights.Count);
+        Assert.Equal(_testDataProvider.Flights[4], topFlights[0]);
+        Assert.Equal(_testDataProvider.Flights[3], topFlights[1]);
+        Assert.Equal(_testDataProvider.Flights[0], topFlights[2]);
+        Assert.Equal(_testDataProvider.Flights[1], topFlights[3]);
+        Assert.Equal(_testDataProvider.Flights[2], topFlights[4]);
     }
 
     /// <summary>

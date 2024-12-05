@@ -3,7 +3,7 @@
 /// <summary>
 /// DTO для информации о загрузке рейсов
 /// </summary>
-public class OccupancyInfoDTO
+public class OccupancyInfoDto
 {
     /// <summary>
     /// Средняя загрузка

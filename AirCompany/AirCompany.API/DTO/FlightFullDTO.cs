@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий полную информацию о рейсе для передачи данных.
 /// </summary>
-public class FlightFullDTO
+public class FlightFullDto
 {
     /// <summary>
     /// Идентификатор рейса
@@ -38,10 +38,10 @@ public class FlightFullDTO
     /// <summary>
     /// Тип самолёта, совершающего рейс
     /// </summary>
-    public required AircraftFullDTO PlaneType { get; set; }
+    public required AircraftFullDto PlaneType { get; set; }
 
     /// <summary>
     /// Список идентификаторов зарегистрированных на рейс пассажиров.
     /// </summary>
-    public List<RegisteredPassengerFullDTO>? Passengers { get; set; }
+    public List<RegisteredPassengerFullDto>? Passengers { get; set; }
 }

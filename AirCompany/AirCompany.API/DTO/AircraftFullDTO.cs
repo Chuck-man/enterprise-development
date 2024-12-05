@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий полную информацию о самолете для передачи данных.
 /// </summary>
-public class AircraftFullDTO
+public class AircraftFullDto
 {
     /// <summary>
     /// Идентификатор самолёта

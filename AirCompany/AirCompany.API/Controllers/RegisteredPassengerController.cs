@@ -19,9 +19,9 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// </summary>
     /// <returns>Список зарегистрированных пассажиров</returns>
     [HttpGet]
-    public ActionResult<IEnumerable<RegisteredPassengerFullDTO>> Get()
+    public ActionResult<IEnumerable<RegisteredPassengerFullDto>> Get()
     {
-        return Ok(registeredPassengerRepository.GetAll().Select(mapper.Map<RegisteredPassengerFullDTO>));
+        return Ok(registeredPassengerRepository.GetAll().Select(mapper.Map<RegisteredPassengerFullDto>));
     }
 
     /// <summary>
@@ -30,15 +30,15 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="id">Идентификатор зарегистрированного пассажира</param>
     /// <returns>Зарегистрированный пассажир или "Не найдено"</returns>
     [HttpGet("{id}")]
-    public ActionResult<RegisteredPassengerFullDTO>? GetById(int id)
+    public ActionResult<RegisteredPassengerFullDto>? GetById(int id)
     {
         var registeredPassenger = registeredPassengerRepository.GetById(id);
         if (registeredPassenger == null) return NotFound();
 
         //Directly map the RegisteredPassenger to RegisteredPassengerFullDTO; AutoMapper handles the nested objects.
-        var registeredPassengerFullDTO = mapper.Map<RegisteredPassengerFullDTO>(registeredPassenger);
+        var registeredPassengerFullDto = mapper.Map<RegisteredPassengerFullDto>(registeredPassenger);
 
-        return Ok(registeredPassengerFullDTO);
+        return Ok(registeredPassengerFullDto);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="entity">Информация о новом зарегистрированном пассажире</param>
     /// <returns>Добавленный зарегистрированный пассажир или "Плохой запрос"</returns>
     [HttpPost]
-    public ActionResult<RegisteredPassengerFullDTO>? Post([FromBody] RegisteredPassengerDTO entity)
+    public ActionResult<RegisteredPassengerFullDto>? Post([FromBody] RegisteredPassengerDto entity)
     {
         var registeredPassenger = mapper.Map<RegisteredPassenger>(entity);
 
@@ -69,7 +69,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
 
         flightRepository.Put(flight.Id, flight);
         var createdRegisteredPassenger = registeredPassengerRepository.Post(registeredPassenger);
-        return CreatedAtAction(nameof(GetById), new { id = createdRegisteredPassenger!.Id }, mapper.Map<RegisteredPassengerFullDTO>(createdRegisteredPassenger));
+        return CreatedAtAction(nameof(GetById), new { id = createdRegisteredPassenger!.Id }, mapper.Map<RegisteredPassengerFullDto>(createdRegisteredPassenger));
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="entity">Обновлённая информация о зарегистрированном пассажире</param>
     /// <returns>Результат операции</returns>
     [HttpPut("{id}")]
-    public ActionResult Put(int id, [FromBody] RegisteredPassengerDTO entity)
+    public ActionResult Put(int id, [FromBody] RegisteredPassengerDto entity)
     {
         var registeredPassenger = mapper.Map<RegisteredPassenger>(entity);
         var flight = flightRepository.GetById(entity.FlightId);

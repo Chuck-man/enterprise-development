@@ -3,7 +3,7 @@
 /// <summary>
 /// Класс, представляющий информация о зарегистрированном пассажире на рейсе для передачи данных.
 /// </summary>
-public class RegisteredPassengerDTO
+public class RegisteredPassengerDto
 {
     /// <summary>
     /// Номер зарегистрированного пассажира
