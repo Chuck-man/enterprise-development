@@ -30,12 +30,11 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="id">Идентификатор зарегистрированного пассажира</param>
     /// <returns>Зарегистрированный пассажир или "Не найдено"</returns>
     [HttpGet("{id}")]
-    public ActionResult<RegisteredPassengerFullDto>? GetById(int id)
+    public ActionResult<RegisteredPassengerFullDto> GetById(int id)
     {
         var registeredPassenger = registeredPassengerRepository.GetById(id);
         if (registeredPassenger == null) return NotFound();
 
-        //Directly map the RegisteredPassenger to RegisteredPassengerFullDTO; AutoMapper handles the nested objects.
         var registeredPassengerFullDto = mapper.Map<RegisteredPassengerFullDto>(registeredPassenger);
 
         return Ok(registeredPassengerFullDto);
@@ -47,7 +46,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="entity">Информация о новом зарегистрированном пассажире</param>
     /// <returns>Добавленный зарегистрированный пассажир или "Плохой запрос"</returns>
     [HttpPost]
-    public ActionResult<RegisteredPassengerFullDto>? Post([FromBody] RegisteredPassengerDto entity)
+    public ActionResult<RegisteredPassengerFullDto> Post([FromBody] RegisteredPassengerDto entity)
     {
         var registeredPassenger = mapper.Map<RegisteredPassenger>(entity);
 

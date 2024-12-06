@@ -29,7 +29,7 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
     /// <param name="id">Идентификатор рейса</param>
     /// <returns>Рейс или "Не найдено"</returns>
     [HttpGet("{id}")]
-    public ActionResult<FlightFullDto>? GetById(int id)
+    public ActionResult<FlightFullDto> GetById(int id)
     {
         var flight = flightRepository.GetById(id);
         if (flight == null) return NotFound();
@@ -37,7 +37,7 @@ public class FlightController(IRepository<Flight> flightRepository, IRepository<
 
         var flightFullDto = mapper.Map<FlightFullDto>(flight);
 
-        flightFullDto.Passengers = flight.Passengers.Select(p => mapper.Map<RegisteredPassengerFullDto>(p)).ToList();
+        flightFullDto.Passengers = flight.Passengers.Select(mapper.Map<RegisteredPassengerFullDto>).ToList();
 
 
         return Ok(flightFullDto);

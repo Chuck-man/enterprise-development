@@ -43,7 +43,7 @@ public class FlightRepository : IRepository<Flight>
     /// </summary>
     /// <param name="entity">Новый рейс, который нужно добавить.</param>
     /// <returns>Возвращает добавленный рейс.</returns>
-    public Flight? Post(Flight entity)
+    public Flight Post(Flight entity)
     {
         entity.Id = _id++;
         _flights.Add(entity);

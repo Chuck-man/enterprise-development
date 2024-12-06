@@ -43,7 +43,7 @@ public class PassengerRepository : IRepository<Passenger>
     /// </summary>
     /// <param name="entity">Новый пассажир, который нужно добавить.</param>
     /// <returns>Возвращает добавленного пассажира.</returns>
-    public Passenger? Post(Passenger entity)
+    public Passenger Post(Passenger entity)
     {
         entity.Id = _id++;
         _passengers.Add(entity);
