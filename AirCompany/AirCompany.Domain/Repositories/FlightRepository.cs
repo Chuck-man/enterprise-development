@@ -31,8 +31,6 @@ public class FlightRepository(AirCompanyContext context, IRepository<Aircraft> a
     /// <returns>Возвращает перечисление всех рейсов.</returns>
     public IEnumerable<Flight> GetAll() => context.Flights
         .Include(f => f.PlaneType)
-        .Include(f => f.Passengers)
-        .AsNoTracking()
         .ToList();
 
     /// <summary>
@@ -42,8 +40,6 @@ public class FlightRepository(AirCompanyContext context, IRepository<Aircraft> a
     /// <returns>Возвращает рейс с заданным идентификатором или null, если не найден.</returns>
     public Flight? GetById(int id) => context.Flights
         .Include(f => f.PlaneType)
-        .Include(f => f.Passengers)
-        .AsNoTracking()
         .FirstOrDefault(f => f.Id == id);
 
     /// <summary>
