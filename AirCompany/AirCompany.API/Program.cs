@@ -2,6 +2,7 @@ using AirCompany.API;
 using AirCompany.Domain.Repositories;
 using AirCompany.Domain;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,13 +16,13 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 
-builder.Services.AddSingleton<IRepository<Aircraft>, AircraftRepository>();
-builder.Services.AddSingleton<IRepository<Flight>, FlightRepository>();
-builder.Services.AddSingleton<IRepository<Passenger>, PassengerRepository>();
-builder.Services.AddSingleton<IRepository<RegisteredPassenger>, RegisteredPassengerRepository>();
-builder.Services.AddAutoMapper(typeof(Mapping));
+builder.Services.AddScoped<IRepository<Aircraft>, AircraftRepository>();
+builder.Services.AddScoped<IRepository<Flight>, FlightRepository>();
+builder.Services.AddScoped<IRepository<Passenger>, PassengerRepository>();
+builder.Services.AddScoped<IRepository<RegisteredPassenger>, RegisteredPassengerRepository>();
 
-builder.Services.AddControllers();
+builder.Services.AddDbContext<AirCompanyContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Postgre")));
 
 builder.Services.AddAutoMapper(typeof(Mapping));
 

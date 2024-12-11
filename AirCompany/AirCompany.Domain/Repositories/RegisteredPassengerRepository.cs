@@ -1,14 +1,14 @@
-﻿namespace AirCompany.Domain.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace AirCompany.Domain.Repositories;
 
 /// <summary>
 /// Репозиторий для работы с сущностями RegisteredPassenger.
 /// Реализует интерфейс IRepository для управления коллекцией зарегистрированных пассажиров.
 /// </summary>
-public class RegisteredPassengerRepository : IRepository<RegisteredPassenger>
+public class RegisteredPassengerRepository(AirCompanyContext context,
+    IRepository<Flight> flightRepository, IRepository<Passenger> passengerRepository) : IRepository<RegisteredPassenger>
 {
-    private readonly List<RegisteredPassenger> _registeredPassengers = [];
-    private int _id = 1;
-
     /// <summary>
     /// Удаляет зарегистрированного пассажира по заданному идентификатору.
     /// </summary>
@@ -21,7 +21,8 @@ public class RegisteredPassengerRepository : IRepository<RegisteredPassenger>
         if (value == null)
             return false;
 
-        _registeredPassengers.Remove(value);
+        context.RegisteredPassengers.Remove(value);
+        context.SaveChanges();
         return true;
     }
 
@@ -29,14 +30,18 @@ public class RegisteredPassengerRepository : IRepository<RegisteredPassenger>
     /// Получает всех зарегистрированных пассажиров.
     /// </summary>
     /// <returns>Возвращает перечисление всех зарегистрированных пассажиров.</returns>
-    public IEnumerable<RegisteredPassenger> GetAll() => _registeredPassengers;
+    public IEnumerable<RegisteredPassenger> GetAll() => context.RegisteredPassengers
+        .Include(rp => rp.Passenger)
+        .ToList();
 
     /// <summary>
     /// Получает зарегистрированного пассажира по заданному идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор зарегистрированного пассажира.</param>
     /// <returns>Возвращает зарегистрированного пассажира с заданным идентификатором или null, если не найден.</returns>
-    public RegisteredPassenger? GetById(int id) => _registeredPassengers.Find(r => r.Id == id);
+    public RegisteredPassenger? GetById(int id) => context.RegisteredPassengers
+        .Include(rp => rp.Passenger)
+        .FirstOrDefault(rp => rp.Id == id);
 
     /// <summary>
     /// Добавляет нового зарегистрированного пассажира в репозиторий.
@@ -45,8 +50,15 @@ public class RegisteredPassengerRepository : IRepository<RegisteredPassenger>
     /// <returns>Возвращает добавленного зарегистрированного пассажира.</returns>
     public RegisteredPassenger? Post(RegisteredPassenger entity)
     {
-        entity.Id = _id++;
-        _registeredPassengers.Add(entity);
+        //Проверка на существование
+        var flight = context.Flights.Find(entity.FlightId);
+        var passenger = context.Passengers.Find(entity.PassengerId);
+
+        entity.Flight = flight;  // Устанавливаем связь с Flight
+        entity.Passenger = passenger!; // Устанавливаем связь с Passenger
+
+        context.RegisteredPassengers.Add(entity);
+        context.SaveChanges();
         return entity;
     }
 
@@ -63,11 +75,19 @@ public class RegisteredPassengerRepository : IRepository<RegisteredPassenger>
         if (oldValue == null)
             return false;
 
+        var flight = flightRepository.GetById(entity.FlightId);
+        var passenger = passengerRepository.GetById(entity.PassengerId);
+
+        if (flight == null || passenger == null)
+            return false;
+
         oldValue.Number = entity.Number;
         oldValue.SeatNumber = entity.SeatNumber;
         oldValue.BaggageWeight = entity.BaggageWeight;
         oldValue.Flight = entity.Flight;
         oldValue.Passenger = entity.Passenger;
+
+        context.SaveChanges();
         return true;
     }
 }

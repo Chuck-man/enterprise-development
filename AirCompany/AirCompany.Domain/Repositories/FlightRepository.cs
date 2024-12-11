@@ -1,14 +1,13 @@
-﻿namespace AirCompany.Domain.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace AirCompany.Domain.Repositories;
 
 /// <summary>
 /// Репозиторий для работы с сущностями Flight.
 /// Реализует интерфейс IRepository для управления коллекцией рейсов.
 /// </summary>
-public class FlightRepository : IRepository<Flight>
+public class FlightRepository(AirCompanyContext context, IRepository<Aircraft> aircraftRepository) : IRepository<Flight>
 {
-    private readonly List<Flight> _flights = [];
-    private int _id = 1;
-
     /// <summary>
     /// Удаляет рейс по заданному идентификатору.
     /// </summary>
@@ -21,7 +20,8 @@ public class FlightRepository : IRepository<Flight>
         if (value == null)
             return false;
 
-        _flights.Remove(value);
+        context.Flights.Remove(value);
+        context.SaveChanges();
         return true;
     }
 
@@ -29,14 +29,22 @@ public class FlightRepository : IRepository<Flight>
     /// Получает все рейсы.
     /// </summary>
     /// <returns>Возвращает перечисление всех рейсов.</returns>
-    public IEnumerable<Flight> GetAll() => _flights;
+    public IEnumerable<Flight> GetAll() => context.Flights
+        .Include(f => f.PlaneType)
+        .Include(f => f.Passengers)
+        .AsNoTracking()
+        .ToList();
 
     /// <summary>
     /// Получает рейс по заданному идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор рейса.</param>
     /// <returns>Возвращает рейс с заданным идентификатором или null, если не найден.</returns>
-    public Flight? GetById(int id) => _flights.Find(f => f.Id == id);
+    public Flight? GetById(int id) => context.Flights
+        .Include(f => f.PlaneType)
+        .Include(f => f.Passengers)
+        .AsNoTracking()
+        .FirstOrDefault(f => f.Id == id);
 
     /// <summary>
     /// Добавляет новый рейс в репозиторий.
@@ -45,8 +53,14 @@ public class FlightRepository : IRepository<Flight>
     /// <returns>Возвращает добавленный рейс.</returns>
     public Flight? Post(Flight entity)
     {
-        entity.Id = _id++;
-        _flights.Add(entity);
+        var aircraft = aircraftRepository.GetById(entity.PlaneTypeId);
+        if (aircraft == null)
+            throw new ArgumentException("Самолет не найден.");
+
+        entity.PlaneType = aircraft;
+
+        context.Flights.Add(entity);
+        context.SaveChanges();
         return entity;
     }
 
@@ -63,13 +77,18 @@ public class FlightRepository : IRepository<Flight>
         if (oldValue == null)
             return false;
 
+        var aircraft = aircraftRepository.GetById(entity.PlaneTypeId);
+        if (aircraft == null)
+            return false;
+
         oldValue.Number = entity.Number;
         oldValue.DeparturePoint = entity.DeparturePoint;
         oldValue.ArrivalPoint = entity.ArrivalPoint;
         oldValue.DepartureDate = entity.DepartureDate;
         oldValue.ArrivalDate = entity.ArrivalDate;
-        oldValue.PlaneType = entity.PlaneType;
-        oldValue.Passengers = entity.Passengers;
+        oldValue.PlaneType = aircraft;
+
+        context.SaveChanges();
         return true;
     }
 }

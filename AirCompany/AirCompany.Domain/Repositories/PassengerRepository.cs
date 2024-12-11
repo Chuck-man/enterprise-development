@@ -4,11 +4,8 @@
 /// Репозиторий для работы с сущностями Passenger.
 /// Реализует интерфейс IRepository для управления коллекцией пассажиров.
 /// </summary>
-public class PassengerRepository : IRepository<Passenger>
+public class PassengerRepository(AirCompanyContext context) : IRepository<Passenger>
 {
-    private readonly List<Passenger> _passengers = [];
-    private int _id = 1;
-
     /// <summary>
     /// Удаляет пассажира по заданному идентификатору.
     /// </summary>
@@ -21,7 +18,8 @@ public class PassengerRepository : IRepository<Passenger>
         if (value == null)
             return false;
 
-        _passengers.Remove(value);
+        context.Passengers.Remove(value);
+        context.SaveChanges();
         return true;
     }
 
@@ -29,14 +27,14 @@ public class PassengerRepository : IRepository<Passenger>
     /// Получает всех пассажиров.
     /// </summary>
     /// <returns>Возвращает перечисление всех пассажиров.</returns>
-    public IEnumerable<Passenger> GetAll() => _passengers;
+    public IEnumerable<Passenger> GetAll() => context.Passengers.ToList();
 
     /// <summary>
     /// Получает пассажира по заданному идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор пассажира.</param>
     /// <returns>Возвращает пассажира с заданным идентификатором или null, если не найден.</returns>
-    public Passenger? GetById(int id) => _passengers.Find(p => p.Id == id);
+    public Passenger? GetById(int id) => context.Passengers.FirstOrDefault(p => p.Id == id);
 
     /// <summary>
     /// Добавляет нового пассажира в репозиторий.
@@ -45,8 +43,8 @@ public class PassengerRepository : IRepository<Passenger>
     /// <returns>Возвращает добавленного пассажира.</returns>
     public Passenger? Post(Passenger entity)
     {
-        entity.Id = _id++;
-        _passengers.Add(entity);
+        context.Passengers.Add(entity);
+        context.SaveChanges();
         return entity;
     }
 
@@ -65,6 +63,8 @@ public class PassengerRepository : IRepository<Passenger>
 
         oldValue.PassportNumber = entity.PassportNumber;
         oldValue.FullName = entity.FullName;
+
+        context.SaveChanges();
         return true;
     }
 }

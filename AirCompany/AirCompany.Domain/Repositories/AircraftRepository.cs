@@ -4,11 +4,8 @@
 /// Репозиторий для работы с сущностями Aircraft.
 /// Реализует интерфейс IRepository для управления коллекцией самолетов.
 /// </summary>
-public class AircraftRepository : IRepository<Aircraft>
+public class AircraftRepository(AirCompanyContext context) : IRepository<Aircraft>
 {
-    private readonly List<Aircraft> _aircrafts = [];
-    private int _id = 1;
-
     /// <summary>
     /// Удаляет самолет по заданному идентификатору.
     /// </summary>
@@ -21,7 +18,8 @@ public class AircraftRepository : IRepository<Aircraft>
         if (value == null)
             return false;
 
-        _aircrafts.Remove(value);
+        context.Remove(value);
+        context.SaveChanges();
         return true;
     }
 
@@ -29,14 +27,14 @@ public class AircraftRepository : IRepository<Aircraft>
     /// Получает все самолеты.
     /// </summary>
     /// <returns>Возвращает перечисление всех самолетов.</returns>
-    public IEnumerable<Aircraft> GetAll() => _aircrafts;
+    public IEnumerable<Aircraft> GetAll() => context.Aircrafts.ToList();
 
     /// <summary>
     /// Получает самолет по заданному идентификатору.
     /// </summary>
     /// <param name="id">Идентификатор самолета.</param>
     /// <returns>Возвращает самолет с заданным идентификатором или null, если не найден.</returns>
-    public Aircraft? GetById(int id) => _aircrafts.Find(a => a.Id == id);
+    public Aircraft? GetById(int id) => context.Aircrafts.FirstOrDefault(a => a.Id == id);
 
     /// <summary>
     /// Добавляет новый самолет в репозиторий.
@@ -45,8 +43,8 @@ public class AircraftRepository : IRepository<Aircraft>
     /// <returns>Возвращает добавленный самолет.</returns>
     public Aircraft? Post(Aircraft entity)
     {
-        entity.Id = _id++;
-        _aircrafts.Add(entity);
+        context.Aircrafts.Add(entity);
+        context.SaveChanges();
         return entity;
     }
 
@@ -67,6 +65,8 @@ public class AircraftRepository : IRepository<Aircraft>
         oldValue.Capacity = entity.Capacity;   
         oldValue.Efficiency = entity.Efficiency;
         oldValue.MaxPassenger = entity.MaxPassenger;
+
+        context.SaveChanges();
         return true;
     }
 }

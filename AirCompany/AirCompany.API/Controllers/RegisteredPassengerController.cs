@@ -35,7 +35,6 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
         var registeredPassenger = registeredPassengerRepository.GetById(id);
         if (registeredPassenger == null) return NotFound();
 
-        //Directly map the RegisteredPassenger to RegisteredPassengerFullDTO; AutoMapper handles the nested objects.
         var registeredPassengerFullDto = mapper.Map<RegisteredPassengerFullDto>(registeredPassenger);
 
         return Ok(registeredPassengerFullDto);
@@ -54,22 +53,20 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
         var flight = flightRepository.GetById(entity.FlightId);
         var existingPassenger = passengerRepository.GetById(entity.PassengerId);
 
-        if (flight == null || existingPassenger == null)
-        {
-            return BadRequest("Рейс или пассажир не найдены");
-        }
+
 
         registeredPassenger.Flight = flight;
         registeredPassenger.Passenger = existingPassenger;
 
         // Инициализируем коллекцию Passengers, если она null
         flight.Passengers ??= new List<RegisteredPassenger>();
-
         flight.Passengers.Add(registeredPassenger);
 
+        registeredPassengerRepository.Post(registeredPassenger);
+
         flightRepository.Put(flight.Id, flight);
-        var createdRegisteredPassenger = registeredPassengerRepository.Post(registeredPassenger);
-        return CreatedAtAction(nameof(GetById), new { id = createdRegisteredPassenger!.Id }, mapper.Map<RegisteredPassengerFullDto>(createdRegisteredPassenger));
+
+        return CreatedAtAction(nameof(GetById), new { id = registeredPassenger.Id }, mapper.Map<RegisteredPassengerFullDto>(registeredPassenger));
     }
 
     /// <summary>
