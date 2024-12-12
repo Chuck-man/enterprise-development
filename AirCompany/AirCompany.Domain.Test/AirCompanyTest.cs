@@ -41,11 +41,11 @@ public class AirCompanyTest(TestDataProvider testDataProvider) : IClassFixture<T
         DateTime end = new(2024, 03, 14, 00, 00, 00);
 
         var flights = _testDataProvider.Flights
-            .Where(f => f.PlaneType.Id == aircraftTypeId && f.DepartureDate >= start && f.ArrivalDate <= end)
+            .Where(f => f.PlaneType!.Id == aircraftTypeId && f.DepartureDate >= start && f.ArrivalDate <= end)
             .ToList();
 
         Assert.NotEmpty(flights);
-        Assert.All(flights, f => Assert.Equal(aircraftTypeId, f.PlaneType.Id));
+        Assert.All(flights, f => Assert.Equal(aircraftTypeId, f.PlaneType!.Id));
         Assert.All(flights, f => Assert.True(f.DepartureDate >= start && f.ArrivalDate <= end));
     }
 

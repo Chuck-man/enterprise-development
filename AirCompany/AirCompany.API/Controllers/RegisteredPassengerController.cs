@@ -46,24 +46,29 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="entity">Информация о новом зарегистрированном пассажире</param>
     /// <returns>Добавленный зарегистрированный пассажир или "Плохой запрос"</returns>
     [HttpPost]
-    public ActionResult<RegisteredPassengerFullDto>? Post([FromBody] RegisteredPassengerDto entity)
+    public ActionResult<RegisteredPassengerFullDto> Post([FromBody] RegisteredPassengerDto entity)
     {
         var registeredPassenger = mapper.Map<RegisteredPassenger>(entity);
 
         var flight = flightRepository.GetById(entity.FlightId);
         var existingPassenger = passengerRepository.GetById(entity.PassengerId);
 
+        if (flight == null)
+        {
+            return BadRequest("Рейс не найден");
+        }
 
+        if (existingPassenger == null)
+        {
+            return BadRequest("Пассажир не найден");
+        }
 
         registeredPassenger.Flight = flight;
         registeredPassenger.Passenger = existingPassenger;
-
-        // Инициализируем коллекцию Passengers, если она null
-        flight.Passengers ??= new List<RegisteredPassenger>();
-        flight.Passengers.Add(registeredPassenger);
+       
+        flight.Passengers = new List<RegisteredPassenger>();
 
         registeredPassengerRepository.Post(registeredPassenger);
-
         flightRepository.Put(flight.Id, flight);
 
         return CreatedAtAction(nameof(GetById), new { id = registeredPassenger.Id }, mapper.Map<RegisteredPassengerFullDto>(registeredPassenger));

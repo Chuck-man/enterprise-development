@@ -50,7 +50,7 @@ namespace AirCompany.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("aircraft");
+                    b.ToTable("aircrafts");
                 });
 
             modelBuilder.Entity("AirCompany.Domain.Flight", b =>
@@ -86,7 +86,8 @@ namespace AirCompany.Domain.Migrations
                         .HasColumnName("number");
 
                     b.Property<int>("PlaneTypeId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("planetype_id");
 
                     b.HasKey("Id");
 
@@ -133,7 +134,8 @@ namespace AirCompany.Domain.Migrations
                         .HasColumnName("baggage_weight");
 
                     b.Property<int>("FlightId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("flight_id");
 
                     b.Property<string>("Number")
                         .IsRequired()
@@ -141,7 +143,8 @@ namespace AirCompany.Domain.Migrations
                         .HasColumnName("number");
 
                     b.Property<int>("PassengerId")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("passenger_id");
 
                     b.Property<string>("SeatNumber")
                         .IsRequired()
@@ -154,7 +157,7 @@ namespace AirCompany.Domain.Migrations
 
                     b.HasIndex("PassengerId");
 
-                    b.ToTable("registered_passengers");
+                    b.ToTable("registeredPassengers");
                 });
 
             modelBuilder.Entity("AirCompany.Domain.Flight", b =>

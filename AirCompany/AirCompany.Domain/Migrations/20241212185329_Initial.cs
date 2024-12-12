@@ -13,7 +13,7 @@ namespace AirCompany.Domain.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "aircraft",
+                name: "aircrafts",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -25,7 +25,7 @@ namespace AirCompany.Domain.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_aircraft", x => x.id);
+                    table.PrimaryKey("PK_aircrafts", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -53,21 +53,21 @@ namespace AirCompany.Domain.Migrations
                     arrival_point = table.Column<string>(type: "text", nullable: false),
                     departure_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     arrival_date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    PlaneTypeId = table.Column<int>(type: "integer", nullable: false)
+                    planetype_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_flights", x => x.id);
                     table.ForeignKey(
-                        name: "FK_flights_aircraft_PlaneTypeId",
-                        column: x => x.PlaneTypeId,
-                        principalTable: "aircraft",
+                        name: "FK_flights_aircrafts_planetype_id",
+                        column: x => x.planetype_id,
+                        principalTable: "aircrafts",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "registered_passengers",
+                name: "registeredPassengers",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -75,47 +75,47 @@ namespace AirCompany.Domain.Migrations
                     number = table.Column<string>(type: "text", nullable: false),
                     seat_number = table.Column<string>(type: "text", nullable: false),
                     baggage_weight = table.Column<double>(type: "double precision", nullable: false),
-                    FlightId = table.Column<int>(type: "integer", nullable: false),
-                    PassengerId = table.Column<int>(type: "integer", nullable: false)
+                    flight_id = table.Column<int>(type: "integer", nullable: false),
+                    passenger_id = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_registered_passengers", x => x.id);
+                    table.PrimaryKey("PK_registeredPassengers", x => x.id);
                     table.ForeignKey(
-                        name: "FK_registered_passengers_flights_FlightId",
-                        column: x => x.FlightId,
+                        name: "FK_registeredPassengers_flights_flight_id",
+                        column: x => x.flight_id,
                         principalTable: "flights",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_registered_passengers_passengers_PassengerId",
-                        column: x => x.PassengerId,
+                        name: "FK_registeredPassengers_passengers_passenger_id",
+                        column: x => x.passenger_id,
                         principalTable: "passengers",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_flights_PlaneTypeId",
+                name: "IX_flights_planetype_id",
                 table: "flights",
-                column: "PlaneTypeId");
+                column: "planetype_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_registered_passengers_FlightId",
-                table: "registered_passengers",
-                column: "FlightId");
+                name: "IX_registeredPassengers_flight_id",
+                table: "registeredPassengers",
+                column: "flight_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_registered_passengers_PassengerId",
-                table: "registered_passengers",
-                column: "PassengerId");
+                name: "IX_registeredPassengers_passenger_id",
+                table: "registeredPassengers",
+                column: "passenger_id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "registered_passengers");
+                name: "registeredPassengers");
 
             migrationBuilder.DropTable(
                 name: "flights");
@@ -124,7 +124,7 @@ namespace AirCompany.Domain.Migrations
                 name: "passengers");
 
             migrationBuilder.DropTable(
-                name: "aircraft");
+                name: "aircrafts");
         }
     }
 }

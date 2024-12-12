@@ -6,7 +6,7 @@ namespace AirCompany.Domain;
 /// <summary>
 /// Класс, представляющий информацию о зарегистрированном пассажире
 /// </summary>
-[Table("registered_passengers")]
+[Table("registeredPassengers")]
 public class RegisteredPassenger
 {
     /// <summary>
@@ -48,12 +48,14 @@ public class RegisteredPassenger
     /// Идентификатор рейса.
     /// </summary>
     [ForeignKey("flight")]
+    [Column("flight_id")]
     public int FlightId { get; set; } // Добавлено
 
     /// <summary>
     /// Идентификатор пассажира.
     /// </summary>
     [ForeignKey("passenger")]
+    [Column("passenger_id")]
     public int PassengerId { get; set; } // Добавлено
 }
 

@@ -6,7 +6,7 @@ namespace AirCompany.Domain;
 /// <summary>
 /// Класс, представляющий информацию о самолёте
 /// </summary>
-[Table("aircraft")]
+[Table("aircrafts")]
 public class Aircraft
 {
     /// <summary>

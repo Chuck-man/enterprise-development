@@ -50,12 +50,11 @@ public class RegisteredPassengerRepository(AirCompanyContext context,
     /// <returns>Возвращает добавленного зарегистрированного пассажира.</returns>
     public RegisteredPassenger? Post(RegisteredPassenger entity)
     {
-        //Проверка на существование
         var flight = context.Flights.Find(entity.FlightId);
         var passenger = context.Passengers.Find(entity.PassengerId);
 
-        entity.Flight = flight;  // Устанавливаем связь с Flight
-        entity.Passenger = passenger!; // Устанавливаем связь с Passenger
+        entity.Flight = flight;  
+        entity.Passenger = passenger!;
 
         context.RegisteredPassengers.Add(entity);
         context.SaveChanges();

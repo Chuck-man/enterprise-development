@@ -65,12 +65,12 @@ public class Flight
     /// Идентификатор типа самолета.
     /// </summary>
     [ForeignKey("aircraftType")]
+    [Column("planetype_id")]
     public int PlaneTypeId { get; set; } // Добавлено
 
     /// <summary>
     /// Список пассажиров, зарегистрированных на рейс
     /// </summary>
-    [Column("id")]
     public required List<RegisteredPassenger> Passengers { get; set; }
 }
 
