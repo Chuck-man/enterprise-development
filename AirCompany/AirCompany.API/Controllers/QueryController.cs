@@ -64,7 +64,7 @@ public class QueryController(IRepository<Flight> flightsRepository,
     public ActionResult<List<FlightInfoDto>> GetFlightSummaryByAircraftType(int aircraftTypeId, DateTime startDate, DateTime endDate)
     {
         var flightSummary = flightsRepository.GetAll()
-            .Where(f => f.PlaneType.Id == aircraftTypeId && f.DepartureDate >= startDate &&
+            .Where(f => f.PlaneType!.Id == aircraftTypeId && f.DepartureDate >= startDate &&
                         f.DepartureDate <= endDate)
             .Select(f => new FlightInfoDto
             {
@@ -75,7 +75,7 @@ public class QueryController(IRepository<Flight> flightsRepository,
                 ArrivalDate = f.ArrivalDate,
                 PassengersCount = registeredPassengerRepository
                     .GetAll()
-                    .Count(rp => rp.Flight?.Id == f.Id)
+                    .Count(rp => rp.Flight!.Id == f.Id)
             })
             .ToList();
 
@@ -97,7 +97,7 @@ public class QueryController(IRepository<Flight> flightsRepository,
                 ArrivalPoint = f.ArrivalPoint,
                 PassengersCount = registeredPassengerRepository
                     .GetAll()
-                    .Count(rp => rp.Flight?.Id == f.Id)
+                    .Count(rp => rp.Flight!.Id == f.Id)
             })
             .OrderByDescending(f => f.PassengersCount)
             .Take(5)
@@ -135,8 +135,8 @@ public class QueryController(IRepository<Flight> flightsRepository,
             .Where(f => f.DeparturePoint == departure)
             .ToList();
 
-        var averageLoad = flights.Average(f => registeredPassengerRepository.GetAll().Count(rp => rp.Flight?.Id == f.Id));
-        var maxLoad = flights.Max(f => registeredPassengerRepository.GetAll().Count(rp => rp.Flight?.Id == f.Id));
+        var averageLoad = flights.Average(f => registeredPassengerRepository.GetAll().Count(rp => rp.Flight!.Id == f.Id));
+        var maxLoad = flights.Max(f => registeredPassengerRepository.GetAll().Count(rp => rp.Flight!.Id == f.Id));
 
         return Ok(new OccupancyInfoDto
         {

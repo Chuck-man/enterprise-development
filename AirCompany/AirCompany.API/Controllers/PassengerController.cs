@@ -29,7 +29,7 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// <param name="id">Идентификатор пассажира.</param>
     /// <returns>Full-dto пассажира с указанным идентификатором или null, если не найден.</returns>
     [HttpGet("{id}")]
-    public ActionResult<PassengerFullDto>? GetById(int id)
+    public ActionResult<PassengerFullDto> GetById(int id)
     {
         var passenger = repository.GetById(id);
         return mapper.Map<PassengerFullDto>(passenger);
@@ -41,7 +41,7 @@ public class PassengerController(IRepository<Passenger> repository, IMapper mapp
     /// <param name="entity">DTO объекта пассажира для добавления.</param>
     /// <returns>Full-dto добавленного пассажира или null, если добавление не удалось.</returns>
     [HttpPost]
-    public ActionResult<PassengerFullDto>? Post(PassengerDto entity)
+    public ActionResult<PassengerFullDto> Post(PassengerDto entity)
     {
         var passenger = mapper.Map<Passenger>(entity);
         return mapper.Map<PassengerFullDto>(repository.Post(passenger));

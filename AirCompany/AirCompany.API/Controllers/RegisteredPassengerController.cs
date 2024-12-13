@@ -30,7 +30,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
     /// <param name="id">Идентификатор зарегистрированного пассажира</param>
     /// <returns>Зарегистрированный пассажир или "Не найдено"</returns>
     [HttpGet("{id}")]
-    public ActionResult<RegisteredPassengerFullDto>? GetById(int id)
+    public ActionResult<RegisteredPassengerFullDto> GetById(int id)
     {
         var registeredPassenger = registeredPassengerRepository.GetById(id);
         if (registeredPassenger == null) return NotFound();
@@ -66,7 +66,7 @@ public class RegisteredPassengerController(IRepository<RegisteredPassenger> regi
         registeredPassenger.Flight = flight;
         registeredPassenger.Passenger = existingPassenger;
        
-        flight.Passengers = new List<RegisteredPassenger>();
+        flight.Passengers = [];
 
         registeredPassengerRepository.Post(registeredPassenger);
         flightRepository.Put(flight.Id, flight);
