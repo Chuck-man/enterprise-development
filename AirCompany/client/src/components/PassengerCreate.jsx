@@ -11,7 +11,7 @@ const PassengerCreate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await api.post('/Passenger', { passportNumber, fullName });
+            await api.post('/api/passenger', { passportNumber, fullName });
             setMessage('Passenger created successfully!');
             setTimeout(() => {
                 navigate('/');

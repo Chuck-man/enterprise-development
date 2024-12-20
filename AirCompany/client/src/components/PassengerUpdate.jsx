@@ -13,7 +13,7 @@ const PassengerUpdate = () => {
     useEffect(() => {
         const fetchPassenger = async () => {
             try {
-                const response = await api.get(`/api/passenger/${id}`);
+                const response = await api.get(`/api/Passenger/${id}`);
                 setPassportNumber(response.data.passportNumber);
                 setFullName(response.data.fullName);
             } catch (error) {
@@ -28,7 +28,7 @@ const PassengerUpdate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await api.put(`/passenger/${id}`, { passportNumber, fullName });
+            await api.put(`/api/Passenger/${id}`, { passportNumber, fullName });
             setMessage('Passenger updated successfully!');
             setTimeout(() => {
                 navigate('/');

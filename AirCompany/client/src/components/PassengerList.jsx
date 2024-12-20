@@ -14,7 +14,7 @@ const PassengerList = () => {
     useEffect(() => {
         const fetchPassengers = async () => {
             try {
-                const response = await api.get('/passenger');
+                const response = await api.get('/api/Passenger');
                 setPassengers(response.data);
             } catch (error) {
                 console.error('Error fetching passengers:', error);

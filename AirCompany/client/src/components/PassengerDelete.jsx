@@ -5,7 +5,7 @@ function PassengerDelete({ id, onDeleteSuccess }) {
     const [message, setMessage] = useState('');
     const handleDelete = async () => {
         try {
-            await api.delete(`/passenger/${id}`);
+            await api.delete(`/api/Passenger/${id}`);
             onDeleteSuccess(id);
             setMessage('Passenger deleted successfully!');
         } catch (error) {
