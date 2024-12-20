@@ -24,7 +24,7 @@ public interface IRepository<T>
     /// </summary>
     /// <param name="entity">Новая сущность</param>
     /// <returns>Добавленная сущность</returns>
-    public T? Post(T entity);
+    public T Post(T entity);
 
     /// <summary>
     /// Обновить сущность по идентификатору 

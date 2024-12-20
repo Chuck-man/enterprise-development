@@ -41,7 +41,7 @@ public class AircraftRepository(AirCompanyContext context) : IRepository<Aircraf
     /// </summary>
     /// <param name="entity">Новый самолет, который нужно добавить.</param>
     /// <returns>Возвращает добавленный самолет.</returns>
-    public Aircraft? Post(Aircraft entity)
+    public Aircraft Post(Aircraft entity)
     {
         context.Aircrafts.Add(entity);
         context.SaveChanges();
