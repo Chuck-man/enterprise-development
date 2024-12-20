@@ -46,7 +46,7 @@ public class QueryController(IRepository<Flight> flightsRepository,
                 SeatNumber = rp.SeatNumber,
                 BaggageWeight = rp.BaggageWeight,
                 FlightId = rp.Flight!.Id,
-                PassengerId = rp.Passenger!.Id
+                PassengerId = rp.Passenger.Id
             })
             .ToList();
 

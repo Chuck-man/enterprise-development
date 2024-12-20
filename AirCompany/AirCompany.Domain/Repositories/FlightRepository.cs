@@ -47,7 +47,7 @@ public class FlightRepository(AirCompanyContext context, IRepository<Aircraft> a
     /// </summary>
     /// <param name="entity">Новый рейс, который нужно добавить.</param>
     /// <returns>Возвращает добавленный рейс.</returns>
-    public Flight? Post(Flight entity)
+    public Flight Post(Flight entity)
     {
         var aircraft = aircraftRepository.GetById(entity.PlaneTypeId);
         if (aircraft == null)

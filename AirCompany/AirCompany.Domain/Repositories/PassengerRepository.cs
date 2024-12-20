@@ -41,7 +41,7 @@ public class PassengerRepository(AirCompanyContext context) : IRepository<Passen
     /// </summary>
     /// <param name="entity">Новый пассажир, который нужно добавить.</param>
     /// <returns>Возвращает добавленного пассажира.</returns>
-    public Passenger? Post(Passenger entity)
+    public Passenger Post(Passenger entity)
     {
         context.Passengers.Add(entity);
         context.SaveChanges();

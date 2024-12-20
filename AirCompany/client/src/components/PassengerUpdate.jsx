@@ -13,7 +13,7 @@ const PassengerUpdate = () => {
     useEffect(() => {
         const fetchPassenger = async () => {
             try {
-                const response = await api.get(`/passenger/${id}`);
+                const response = await api.get(`/api/passenger/${id}`);
                 setPassportNumber(response.data.passportNumber);
                 setFullName(response.data.fullName);
             } catch (error) {
